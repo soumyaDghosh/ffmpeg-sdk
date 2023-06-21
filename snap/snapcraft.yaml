@@ -20,12 +20,7 @@ slots:
     interface: content
     read:
       - /
-layout:
-  /usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib:
-    symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib
-  /usr/share/alsa:
-    symlink: $SNAP/usr/share/alsa
-
+      
 parts:
   ffmpeg-2204:
     plugin: nil
