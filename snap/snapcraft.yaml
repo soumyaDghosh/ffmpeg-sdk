@@ -15,6 +15,11 @@ grade: stable
 confinement: strict
 compression: lzo
 
+slots:
+  ffmpeg-2204:
+    interface: content
+    read:
+      - /
 layout:
   /usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib:
     symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib
