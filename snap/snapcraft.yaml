@@ -25,7 +25,7 @@ parts:
   ffmpeg-2204:
     plugin: nil
     stage-snaps:
-      - ffmpeg-2204-sdk/latest/edge
+      - ffmpeg-2204-sdk/latest/stable
     prime:
       - -usr/include
       - -usr/lib/*/pkgconfig
