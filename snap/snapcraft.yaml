@@ -29,5 +29,7 @@ parts:
     prime:
       - -usr/include
       - -usr/lib/*/pkgconfig
+      - -usr/lib/*/libzimg.a
+      - -usr/lib/*/libzimg.la
       - -meta*
       - -snap*
