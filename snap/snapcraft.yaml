@@ -1,15 +1,7 @@
 name: ffmpeg-2204
-#adopt-info: ffmpeg-2204-sdk
-#summary: A complete solution to record, convert and stream audio and video.
-#description: |
-# FFmpeg is the leading multimedia framework, able to decode, encode,
-# transcode, mux, demux, stream, filter and play pretty much anything that
-# humans and machines have created. It supports the most obscure ancient formats
-# up to the cutting edge. No matter if they were designed by some standards
-# committee, the community or a corporation.
 summary: ffmpeg content snap for core22
 description: FFmpeg is a collection of libraries and tools to process multimedia content such as audio, video, subtitles and related metadata.
-version: git
+version: '6.0'
 base: core22
 grade: stable
 confinement: strict
