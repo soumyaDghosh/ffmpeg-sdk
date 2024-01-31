@@ -17,6 +17,7 @@ compression: lzo
 lint:
   ignore:
     - classic
+    - library
 
 parts:
   nv-codec-headers:
