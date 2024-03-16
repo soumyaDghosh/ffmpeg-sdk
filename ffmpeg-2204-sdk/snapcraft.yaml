@@ -259,10 +259,11 @@ parts:
       --enable-shared \
       --enable-vaapi \
       --enable-version3 \
-      --enable-vulkan \
       --enable-xlib ${EXTRA}
 
       # TODO: re-enable `--enable-nonfree \` if we can determine the legality/licensing issues are ok.
+
+      # TODO: re-enable vulkan
 
       make -j $(nproc)
       make DESTDIR="$CRAFT_PART_INSTALL" install
