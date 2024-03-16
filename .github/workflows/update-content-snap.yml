@@ -17,6 +17,7 @@ jobs:
     name: Sync version with upstream
     environment: "Candidate Branch"
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Sync version with upstream
         uses: snapcrafters/ci/sync-version@main
