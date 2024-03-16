@@ -14,18 +14,15 @@ base: core22
 grade: stable
 confinement: strict
 compression: lzo
-
 # lint:
 #   ignore:
 #     - classic
 #     - library
-
 architectures:
   - build-on: amd64
   - build-on: arm64
   - build-on: armhf
   - build-on: ppc64el
-
 parts:
   nv-codec-headers:
     plugin: make
