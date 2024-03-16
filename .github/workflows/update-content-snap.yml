@@ -3,7 +3,7 @@ name: Update Content Snap
 on:
   workflow_run:
     workflows: ["Release ffmpeg-2204-sdk to candidate", "Promote SDK to stable"]
-    types: [requested]
+    types: [completed]
     paths:
       - "ffmpeg-2204/**"
   workflow_dispatch:
