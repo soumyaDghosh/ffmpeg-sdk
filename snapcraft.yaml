@@ -234,14 +234,14 @@ parts:
       #- on i386:
       #- libcrystalhd-dev
     override-build: |
-      if [ "$CRAFT_TARGET_ARCH" = "amd64" ]; then
+      if [ "$CRAFT_TARGET_ARCH_BUILD_FOR" = "amd64" ]; then
         # TODO: re-enable `--enable-cuda-sdk --enable-cuda --enable-libnpp` if we can determine that we can ship non-free
         EXTRA="--enable-vdpau --enable-nvenc --enable-cuvid"
-      elif [ "$CRAFT_TARGET_ARCH" = "i386" ]; then
+      elif [ "$CRAFT_TARGET_ARCH_BUILD_FOR" = "i386" ]; then
         EXTRA="--enable-vdpau --enable-nvenc"
-      elif [ "$CRAFT_TARGET_ARCH" = "armhf" ]; then
+      elif [ "$CRAFT_TARGET_ARCH_BUILD_FOR" = "armhf" ]; then
         EXTRA="--disable-vdpau --enable-neon"
-      elif [ "$CRAFT_TARGET_ARCH" = "arm64" ]; then
+      elif [ "$CRAFT_TARGET_ARCH_BUILD_FOR" = "arm64" ]; then
         EXTRA="--disable-vdpau"
       else
         EXTRA=""
