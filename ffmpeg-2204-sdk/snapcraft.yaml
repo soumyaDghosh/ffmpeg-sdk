@@ -97,6 +97,60 @@ parts:
       - --libdir=/usr/lib/${CRAFT_ARCH_TRIPLET}
     prime:
       - -usr/share
+
+  vulkan-headers:
+    source: https://github.com/KhronosGroup/Vulkan-Headers.git
+    source-tag: 'v1.3.281'
+    source-depth: 1
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
+    build-packages:
+      - libx11-dev
+      - libxcb1-dev
+      - libxrandr-dev
+      - pkg-config
+
+  vulkan-loaders:
+    after: [ vulkan-headers ]
+    source: https://github.com/KhronosGroup/Vulkan-Loader.git
+    source-tag: 'v1.3.281'
+    source-depth: 1
+    plugin: cmake
+    build-environment:
+      - CMAKE_PREFIX_PATH: $CRAFT_STAGE/usr
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_LIBDIR=/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+      - -DLOADER_CODEGEN=ON
+      - -DBUILD_TESTS=OFF
+    build-packages:
+      - libx11-dev
+      - libxcb1-dev
+      - libxrandr-dev
+      - pkg-config
+
+  libva:
+    source: https://github.com/intel/libva.git
+    source-tag: '2.21.0'
+    source-depth: 1
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+      - -Doptimization=3
+      - -Ddebug=true
+      - -Dwith_x11=yes
+      - -Dwith_glx=yes
+      - -Dwith_wayland=yes
+    build-packages:
+      - meson
+      - libxcb-dri3-dev
+    override-prime: ''
+  
   ffmpeg:
     after:
       - avisynth-plus
@@ -105,6 +159,8 @@ parts:
       - srt
       - x264
       - zimg
+      - vulkan-loaders
+      - libva
     plugin: autotools
     source: https://git.ffmpeg.org/ffmpeg.git
     source-branch: 'release/6.1'
@@ -153,7 +209,6 @@ parts:
       - libvo-amrwbenc-dev
       - libvorbis-dev
       - libvpx-dev
-      - libvulkan-dev
       - libwavpack-dev
       - libwebp-dev
       - libx265-dev
@@ -260,6 +315,7 @@ parts:
       --enable-vaapi \
       --enable-version3 \
       --enable-xlib ${EXTRA}
+      --enable-vulkan
 
       # TODO: re-enable `--enable-nonfree \` if we can determine the legality/licensing issues are ok.
 
