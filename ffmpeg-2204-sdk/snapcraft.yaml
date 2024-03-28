@@ -377,7 +377,6 @@ parts:
       - libvdpau-va-gl1
       - libvo-amrwbenc0
       - libvpx7
-      - libvulkan1
       - libx265-199
       - libxau6
       - libxcb-shape0
