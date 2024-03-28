@@ -31,32 +31,55 @@ jobs:
         with:
           snapcraft-project-root: "ffmpeg-2204"
 
-
   release-content:
     name: 🚢 Release to latest/candidate
     needs: get-architectures
     runs-on: ubuntu-latest
     environment: "2204 Branch"
     steps:
-      - name: Iterate over architectures
-        id: iterate-architectures
-        run: |
-          for arch in ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}; do
-            echo "Building for architecture: $arch"
-            # Call the release-to-candidate action for each architecture
-            echo "::set-output name=architecture::$arch"
-          done
       - name: 🚢 Release to latest/candidate
-        id: release
+        id: build-amd64
         uses: jnsgruk/snapcrafters-ci/release-to-candidate@build-id-fix
         with:
-          architecture: ${{ steps.iterate-architectures.outputs.architecture }}
+          architecture: "amd64"
           channel: "candidate"
           launchpad-token: ${{ secrets.LP_BUILD_SECRET }}
           snapcraft-project-root: "ffmpeg-2204"
           store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-  
+
+  release-content:
+    name: 🚢 Release to latest/candidate
+    needs: build-amd64
+    runs-on: ubuntu-latest
+    environment: "2204 Branch"
+    steps:
+      - name: 🚢 Release to latest/candidate
+        id: build-arm64
+        uses: jnsgruk/snapcrafters-ci/release-to-candidate@build-id-fix
+        with:
+          architecture: "arm64"
+          channel: "candidate"
+          launchpad-token: ${{ secrets.LP_BUILD_SECRET }}
+          snapcraft-project-root: "ffmpeg-2204"
+          store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+  release-content:
+    name: 🚢 Release to latest/candidate
+    needs: build-armhf
+    runs-on: ubuntu-latest
+    environment: "2204 Branch"
+    steps:
+      - name: 🚢 Release to latest/candidate
+        uses: jnsgruk/snapcrafters-ci/release-to-candidate@build-id-fix
+        with:
+          architecture: "armhf"
+          channel: "candidate"
+          launchpad-token: ${{ secrets.LP_BUILD_SECRET }}
+          snapcraft-project-root: "ffmpeg-2204"
+          store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
   
   call-for-testing:
     name: 📣 Create call for testing
