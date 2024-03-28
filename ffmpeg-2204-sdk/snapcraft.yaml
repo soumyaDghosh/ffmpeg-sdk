@@ -399,7 +399,7 @@ parts:
       - on i386:
           - mesa-va-drivers
           #- libcrystalhd3
-    prime:
+    stage:
       - -usr/share
       - -etc
       - -var
