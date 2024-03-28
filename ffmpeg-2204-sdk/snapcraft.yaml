@@ -396,9 +396,6 @@ parts:
           # - libnppig10
           # - libnppicc10
           # - libnppidei10
-      - on i386:
-          - mesa-va-drivers
-          #- libcrystalhd3
     stage:
       - -usr/share
       - -etc
