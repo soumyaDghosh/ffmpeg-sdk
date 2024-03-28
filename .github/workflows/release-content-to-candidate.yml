@@ -53,7 +53,7 @@ jobs:
 
   call-for-testing:
     name: 📣 Create call for testing
-    needs: [release-content, build-armhf]
+    needs: [release-content, get-architectures]
     environment: "2204 Branch"
     runs-on: ubuntu-latest
     outputs:
