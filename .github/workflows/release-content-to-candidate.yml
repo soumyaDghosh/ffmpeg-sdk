@@ -31,7 +31,7 @@ jobs:
         with:
           snapcraft-project-root: "ffmpeg-2204"
 
-  release-content:
+  release-content-amd64:
     name: 🚢 Release to latest/candidate
     needs: get-architectures
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
           store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-  release-content:
+  release-content-arm64:
     name: 🚢 Release to latest/candidate
     needs: build-amd64
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
           store-token: ${{ secrets.SNAP_STORE_CANDIDATE }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-  release-content:
+  release-content-armhf:
     name: 🚢 Release to latest/candidate
     needs: build-armhf
     runs-on: ubuntu-latest
