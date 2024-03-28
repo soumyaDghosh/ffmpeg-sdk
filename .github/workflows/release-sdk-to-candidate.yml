@@ -41,7 +41,7 @@ jobs:
         architecture: ${{ fromJSON(needs.get-architectures.outputs.architectures-list) }}
     steps:
       - name: 🚢 Release to latest/candidate
-        uses: jnsgruk/snapcrafters-ci/release-to-candidate@build-id-fix
+        uses: snapcrafters/ci/release-to-candidate@main
         with:
           architecture: ${{ matrix.architecture }}
           channel: "candidate"
