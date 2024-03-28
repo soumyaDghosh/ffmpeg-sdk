@@ -149,6 +149,7 @@ parts:
     build-packages:
       - meson
       - libxcb-dri3-dev
+      - libx11-xcb-dev
     override-prime: ''
   
   ffmpeg:
