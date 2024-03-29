@@ -97,7 +97,6 @@ parts:
       - --libdir=/usr/lib/${CRAFT_ARCH_TRIPLET}
     prime:
       - -usr/share
-
   vulkan-headers:
     source: https://github.com/KhronosGroup/Vulkan-Headers.git
     source-tag: 'v1.3.281'
@@ -112,9 +111,8 @@ parts:
       - libxcb1-dev
       - libxrandr-dev
       - pkg-config
-
   vulkan-loaders:
-    after: [ vulkan-headers ]
+    after: [vulkan-headers]
     source: https://github.com/KhronosGroup/Vulkan-Loader.git
     source-tag: 'v1.3.281'
     source-depth: 1
@@ -133,7 +131,6 @@ parts:
       - libxcb1-dev
       - libxrandr-dev
       - pkg-config
-
   libva:
     source: https://github.com/intel/libva.git
     source-tag: '2.21.0'
@@ -151,7 +148,6 @@ parts:
       - libxcb-dri3-dev
       - libx11-xcb-dev
     override-prime: ''
-  
   ffmpeg:
     after:
       - avisynth-plus
@@ -164,7 +160,7 @@ parts:
       - libva
     plugin: autotools
     source: https://git.ffmpeg.org/ffmpeg.git
-    source-branch: 'release/6.1'
+    source-branch: 'release/7.0'
     source-depth: 1
     build-packages:
       - libaom-dev
