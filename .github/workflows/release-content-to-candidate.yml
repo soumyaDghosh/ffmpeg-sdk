@@ -18,8 +18,8 @@ permissions:
   issues: write
 
 jobs:
-  if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
   get-architectures:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     name: 🖥 Get snap architectures
     runs-on: ubuntu-latest
     outputs:
