@@ -41,6 +41,7 @@ jobs:
             yq -i ".parts.ffmpeg.source-branch = \"$FFMPEG_VERSION\"" ffmpeg-2204-sdk/snapcraft.yaml
             ffmpeg_version=$(echo $FFMPEG_VERSION | cut -c 9-)
             yq -i ".version=\"$ffmpeg_version\"" ffmpeg-2204-sdk/snapcraft.yaml
+            echo $ffmpeg_version
             echo "FFMPEG_VERSION=$ffmpeg_version" >> "$GITHUB_OUTPUT"
             
 
