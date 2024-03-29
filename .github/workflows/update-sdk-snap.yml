@@ -49,9 +49,11 @@ jobs:
     steps:
       - name: Sync version with upstream
         uses: snapcrafters/ci/sync-version@main
+        env:
+          FFMPEG_VERSION: ${{ needs.sync-sdk.outputs.ffmpeg-version }}
         with:
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           branch: '2204'
           snapcraft-project-root: "ffmpeg-2204"
           update-script: |
-            yq -i ".version=\"${{ needs.sync-sdk.outputs.ffmpeg-version }}\"" ffmpeg-2204/snapcraft.yaml
+            yq -i ".version=\"$FFMPEG_VERSION\"" ffmpeg-2204/snapcraft.yaml
