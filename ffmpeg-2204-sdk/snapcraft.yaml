@@ -9,7 +9,7 @@ name: ffmpeg-2204-sdk
 # committee, the community or a corporation.
 summary: SDK for ffmpeg-2204
 description: SDK to build ffmpeg-2204 content snap
-version: 'release/7.0'
+version: '7.0'
 base: core22
 grade: stable
 confinement: strict
