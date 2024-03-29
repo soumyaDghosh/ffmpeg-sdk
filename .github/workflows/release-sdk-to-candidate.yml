@@ -62,5 +62,6 @@ jobs:
         id: issue
         uses: snapcrafters/ci/call-for-testing@main
         with:
+          snapcraft-project-root: "ffmpeg-2204-sdk"
           architectures: ${{ needs.get-architectures.outputs.architectures }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
