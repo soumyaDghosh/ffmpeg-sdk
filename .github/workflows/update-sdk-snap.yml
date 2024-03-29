@@ -40,6 +40,7 @@ jobs:
             echo "ffmpeg-version=$FFMPEG_VERSION" >> "$GITHUB_OUTPUT"
 
   sync-content-version:
+    needs: sync-sdk
     name: Sync version of the content snap with upstream
     environment: "2204 Branch"
     runs-on: ubuntu-latest
@@ -47,8 +48,9 @@ jobs:
       - name: Sync version with upstream
         uses: snapcrafters/ci/sync-version@main
         with:
+          ffmpeg_version: ${{ steps.sync-sdk.outputs.ffmpeg-version }}
           token: ${{ secrets.SNAPCRAFTERS_BOT_COMMIT }}
           branch: '2204'
           snapcraft-project-root: "ffmpeg-2204"
           update-script: |
-            yq -i ".version=\"$FFMPEG_VERSION\"" ffmpeg-2204/snapcraft.yaml
+            yq -i ".version=\"$ffmpeg_version\"" ffmpeg-2204/snapcraft.yaml
